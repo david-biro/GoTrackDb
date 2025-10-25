@@ -16,6 +16,7 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"path/filepath"
 
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
@@ -42,8 +43,15 @@ func setEnv() {
 }
 
 func readConf() {
-	var err error
-	config.Cfg, err = config.ReadConfig("config.file")
+	exePath, err := os.Executable()
+	if err != nil {
+			log.Fatal(err)
+	}
+
+	exeDir := filepath.Dir(exePath)
+	configPath := filepath.Join(exeDir, "config.file")
+
+	config.Cfg, err = config.ReadConfig(configPath)
 	if err != nil {
 		log.Fatalf("Error reading config file: %v", err)
 	}
