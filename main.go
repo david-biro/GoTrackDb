@@ -53,7 +53,7 @@ func readConf() {
 
 	config.Cfg, err = config.ReadConfig(configPath)
 	if err != nil {
-		log.Fatalf("Error reading config file: %v", err)
+		log.Fatalf("Error reading config file at %s: %w", configPath, err)
 	}
 }
 
