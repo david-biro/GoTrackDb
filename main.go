@@ -24,7 +24,7 @@ import (
 	client "github.com/influxdata/influxdb1-client/v2"
 )
 
-var ic *client.Client
+// var ic *client.Client
 var ms = model.Markers{}
 var xmlstruct, filename string
 var mutex = &sync.Mutex{}
@@ -111,7 +111,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		//keys for sorting hashmap
 		ms.M[r.FormValue("sn")] = n
 		keys := make([]string, 0)
-		for k, _ := range ms.M {
+		for k := range ms.M {
 			keys = append(keys, k)
 		}
 
@@ -151,7 +151,6 @@ func initialize() {
 	model.SetDbParams()
 	ic := influxdb.Connect(model.Dbhost, model.Dbport, model.Dbuser, model.Dbpass)
 	fmt.Println(model.Dbuser)
-	fmt.Println("model.Dbuser")
 	fmt.Println(model.Dbhost)
 	if ic != nil {
 		defer ic.Close()
