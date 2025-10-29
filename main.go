@@ -10,13 +10,13 @@ import (
 	"math"
 	"net/http"
 	"os"
+	"path/filepath"
 	"reflect"
 	"runtime"
 	"sort"
 	"strings"
 	"sync"
 	"time"
-	"path/filepath"
 
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
@@ -45,7 +45,7 @@ func setEnv() {
 func readConf() {
 	exePath, err := os.Executable()
 	if err != nil {
-			log.Fatal(err)
+		log.Fatal(err)
 	}
 
 	exeDir := filepath.Dir(exePath)
@@ -53,7 +53,7 @@ func readConf() {
 
 	config.Cfg, err = config.ReadConfig(configPath)
 	if err != nil {
-		log.Fatalf("Error reading config file at %s: %w", configPath, err)
+		log.Fatalf("Error reading config file at %s: %+v", configPath, err)
 	}
 }
 
