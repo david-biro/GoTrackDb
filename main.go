@@ -102,7 +102,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("Error %s", r.URL)
 		}
 	}
-	fmt.Println("\n")
+	fmt.Println()
 	n.UnixTime = time.Now().Unix()
 	n.Time = time.Now().Format("2006-01-02 15:04:05")
 	if r.FormValue("sn") != "" && r.FormValue("lat") != "0.0" && r.FormValue("lon") != "0.0" {
