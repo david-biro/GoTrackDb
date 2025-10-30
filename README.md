@@ -1,5 +1,5 @@
  # GoTrackDb
- GoTrackDb is an application written in Go that receives location data from Android app [PhoneLocationLogger](https://github.com/david-biro/PhoneLocationLogger) and stores it in a time series database (InfluxDB).
+ GoTrackDb is an application written in Go that receives location data from clients via HTTP POST requests (values of "application/x-www-form-urlencoded") and stores it in a time-series database (InfluxDB).
 
 Edit the config.file according to your needs. The XML file data.xml contains markers for the current location data and can be used to display it on a map.
 
