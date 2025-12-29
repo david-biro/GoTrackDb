@@ -2,6 +2,7 @@ package main
 
 import (
 	"GoTrackDb/config"
+	"GoTrackDb/gnss"
 	"GoTrackDb/influxdb"
 	"GoTrackDb/model"
 	"fmt"
@@ -105,7 +106,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println()
 	n.UnixTime = time.Now().Unix()
 	n.Time = time.Now().Format("2006-01-02 15:04:05")
-	if r.FormValue("sn") != "" && r.FormValue("lat") != "0.0" && r.FormValue("lon") != "0.0" {
+	if r.FormValue("sn") != "" && gnss.IsDottedDecimal(r.FormValue("lat"), r.FormValue("lon")) {
 		mutex.Lock()
 
 		//keys for sorting hashmap
